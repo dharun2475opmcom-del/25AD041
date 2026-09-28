@@ -1,4 +1,7 @@
 package care.plan.enums;
 
-public class DoseStatus {
+public enum DoseStatus {
+    PENDING,
+    TAKEN,
+    MISSED
 }

@@ -1,5 +1,6 @@
 package care.plan.service;
 
+import care.plan.exception.DoseAlreadyFinalizedException;
 import care.plan.enums.DoseStatus;
 import care.plan.model.Dose;
 import care.plan.model.Schedule;
@@ -49,6 +50,14 @@ public class DoseService {
                     "Dose date is after schedule end date");
         }
 
+        if (doseRepository.existsByScheduleIdAndScheduledDateTime(
+                scheduleId,
+                scheduledDateTime)) {
+
+            throw new RuntimeException(
+                    "Dose already exists for this scheduled time");
+        }
+
         Dose dose = new Dose();
 
         dose.setSchedule(schedule);
@@ -82,7 +91,7 @@ public class DoseService {
 
         if (dose.getStatus() != DoseStatus.PENDING) {
 
-            throw new RuntimeException(
+            throw new DoseAlreadyFinalizedException(
                     "Dose status has already been finalized");
         }
 

@@ -16,4 +16,8 @@ public interface DoseRepository extends JpaRepository<Dose, Long> {
             LocalDateTime end);
 
     List<Dose> findByStatus(DoseStatus status);
+
+    boolean existsByScheduleIdAndScheduledDateTime(
+            Long scheduleId,
+            LocalDateTime scheduledDateTime);
 }

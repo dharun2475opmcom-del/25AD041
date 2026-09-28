@@ -1,4 +1,4 @@
-package care.plan.entity;
+package care.plan.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
